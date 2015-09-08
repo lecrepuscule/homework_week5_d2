@@ -16,9 +16,13 @@ iframe {
   margin: 0 auto;
 }
 
-li {
-  margin:0 auto;
-  text-decoration: none;
+#video-list {
+  display: inline-block;
+  vertical-align: top;
+}
+
+#video-screen {
+  display: inline-block;
 }
 
 form {
