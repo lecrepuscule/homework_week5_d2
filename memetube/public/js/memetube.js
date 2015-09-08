@@ -26,10 +26,10 @@ function screenVideo(video){
 }
 
 function deleteVideo(){
-  var toBeDeleted = $(this);
+  var toBeDeleted = $(this)
   var action = "/videos/" + $(this).data("id");
   request(action, "delete").done(function(response){
-    toBeDeleted.parent().remove();
+   toBeDeleted.parent().remove();
   })
 }
 
@@ -43,5 +43,5 @@ function request(action, method, data){
 }
 
 function appendVideo(video){
-  $("<li class='video-title' data-id=" + video.id + "><a href='#'>" + video.title + "</a></li><button class='delete' href='#' data-id=" + video.id + ">delete</button>").appendTo("#video-list");
+  $("<li class='video-title' data-id=" + video.id + "><a href='#'>" + video.title + "</a><button class='delete' href='#' data-id=" + video.id + ">delete</button></li>").appendTo("#video-list");
 }
