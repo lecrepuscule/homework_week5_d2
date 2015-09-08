@@ -25,6 +25,14 @@ iframe {
   display: inline-block;
 }
 
+.delete {
+  display: inline-block;
+}
+
+.video-title {
+  display: inline-block;
+}
+
 form {
   text-align: center;
 }

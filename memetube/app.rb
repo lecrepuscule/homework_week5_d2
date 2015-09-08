@@ -89,8 +89,12 @@ post "/videos/:video_id" do
 end
 
 #delete
-post "/videos/:video_id/delete" do
-  sql = "delete from videos where id=#{params['video_id']} returning *"
-  @deleted = @db.exec(sql)
-  erb :videos
+delete "/videos/:video_id" do
+  sql = "delete from videos where id=#{params[:video_id]} returning *"
+  deleted = @db.exec(sql)
+  if request.xhr?  
+    json deleted
+  else
+    erb :index
+  end
 end
