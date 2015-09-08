@@ -60,9 +60,12 @@ end
 
 #show
 get "/videos/:video_id" do
-  @video = get_Single_Video @db
-  @header = @video["title"]
-  erb :video
+  video = get_Single_Video @db
+  if request.xhr?  
+    json video
+  else
+    erb :index
+  end
 end
 
 #edit

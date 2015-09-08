@@ -1,6 +1,6 @@
 $(document).ready(function(){
-  console.log("hello");
   getVideos();
+  $("body").on("click", ".video-title", showVideo);
 })
 
 function getVideos(){
@@ -8,6 +8,14 @@ function getVideos(){
     $.each(response, function(index, video){
       appendVideo(video);
     })
+  })
+}
+
+function showVideo(){
+  var action = "/videos/" + $(this).data("id");
+  request(action, "get").done(function(response){
+    console.log(response);
+    playVideo();
   })
 }
 
