@@ -1,8 +1,9 @@
 require "sinatra"
-require "sinatra/reloader" if development?
+require "sinatra/contrib/all"
+require "json"
 require "pry"
 require "pg"
-require "json"
+
 
 before do
   @db = PG.connect(dbname: "memetube_app", host: "localhost")
@@ -26,7 +27,12 @@ end
 get "/videos" do
   sql = "select id, title from videos"
   videos = @db.exec(sql) 
-  request.xhr? ? json(videos.entries) : erb(:index)
+
+  if request.xhr?  
+    json videos.entries
+  else
+    erb :index
+  end
 end
 
 #new
