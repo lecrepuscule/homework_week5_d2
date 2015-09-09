@@ -53,8 +53,13 @@ post "/videos" do
     '#{params[:url]}',
     '#{params[:genre]}'
     ) returning *;"
-  @newly_added = @db.exec(sql)
-  erb :videos
+  new_video = @db.exec(sql).first
+
+  if request.xhr?  
+    json new_video.entries
+  else
+    erb :index
+  end
 end
 
 
@@ -84,8 +89,12 @@ post "/videos/:video_id" do
   url='#{params['url']}', 
   genre='#{params['genre']}' 
   where id=#{params['video_id']} returning *"
-  @updated = @db.exec(sql)
-  erb :video
+  updated_video = @db.exec(sql).first
+  if request.xhr?  
+    json updated_video
+  else
+    erb :index
+  end
 end
 
 #delete
